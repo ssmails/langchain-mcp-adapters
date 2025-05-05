@@ -28,6 +28,8 @@ async def main():
 
             # Get tools
             tools = await load_mcp_tools(session)
+            for tool in tools:
+                print("tools:",tool.name)
 
             # Create and run the agent
             agent = create_react_agent(model, tools)

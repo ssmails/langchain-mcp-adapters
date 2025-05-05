@@ -109,11 +109,15 @@ if __name__ == "__main__":
 ### Client
 
 ```python
-from langchain_mcp_adapters.client import MultiServerMCPClient
 from langgraph.prebuilt import create_react_agent
 
-from langchain_openai import ChatOpenAI
-model = ChatOpenAI(model="gpt-4o")
+from langchain_mcp_adapters.client import MultiServerMCPClient
+
+model = AzureChatOpenAI(
+    azure_deployment="gpt-4o",  # Replace with your deployment name
+    api_version="2024-08-01-preview",  # Use the correct API version
+    temperature=0
+)
 
 async with MultiServerMCPClient() as client:
     await client.connect_to_server(
